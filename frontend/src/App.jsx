@@ -13,7 +13,6 @@ import { TOOLS } from './data/toolsData';
 
 import MergeTool from './components/tools/MergeTool';
 import SplitTool from './components/tools/SplitTool';
-import EditPdfTool from './components/tools/EditPdfTool';
 import ZipTool from './components/tools/ZipTool';
 import WatermarkTool from './components/tools/WatermarkTool';
 import DeletePagesTool from './components/tools/DeletePagesTool';
@@ -33,7 +32,6 @@ import {
   ShieldCheck,
   Merge, 
   Scissors,
-  Edit3, 
   Archive, 
   Stamp, 
   Trash2, 
@@ -99,7 +97,6 @@ export default function App() {
     switch (iconName) {
       case 'Merge': return Merge;
       case 'Scissors': return Scissors;
-      case 'Edit3': return Edit3;
       case 'Archive': return Archive;
       case 'Stamp': return Stamp;
       case 'Trash2': return Trash2;
@@ -246,7 +243,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col libertinus-math-regular font-['Libertinus_Math',system-ui] bg-halka-red-gradient text-slate-900 bg-grid-pattern-red">
+    <div className="min-h-screen flex flex-col libertinus-math-regular font-['Libertinus_Math',system-ui] bg-premium-dark-gradient text-slate-900 bg-grid-pattern">
       
       {globalToast && (
         <Toast
@@ -352,10 +349,7 @@ export default function App() {
             path="/split-pdf"
             element={renderToolWorkspace(TOOLS.find(t => t.id === 'split'), SplitTool)}
           />
-          <Route
-            path="/edit-pdf"
-            element={renderToolWorkspace(TOOLS.find(t => t.id === 'edit-pdf'), EditPdfTool)}
-          />
+
           <Route
             path="/make-zip"
             element={renderToolWorkspace(TOOLS.find(t => t.id === 'zip'), ZipTool)}

@@ -9,7 +9,6 @@ import {
   pdfToImagesApi,
   lockPdfApi,
   unlockPdfApi,
-  editPdfApi,
   pdfToWordApi,
   wordToPdfApi,
   pdfToPptApi
@@ -19,19 +18,7 @@ export const useTools = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const editPdf = async (file, options) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const data = await editPdfApi(file, options);
-      setLoading(false);
-      return data;
-    } catch (err) {
-      setLoading(false);
-      setError(err.message);
-      throw err;
-    }
-  };
+
 
   const pdfToWord = async (file) => {
     setLoading(true);
@@ -202,7 +189,6 @@ export const useTools = () => {
   };
 
   return {
-    editPdf,
     pdfToWord,
     wordToPdf,
     pdfToPpt,

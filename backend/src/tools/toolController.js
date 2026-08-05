@@ -8,29 +8,11 @@ import {
   pdfToImages,
   lockPdf,
   unlockPdf,
-  editPdf,
   pdfToWord,
   wordToPdf,
   pdfToPpt
 } from './toolService.js';
 
-export const editPdfController = async (req, res) => {
-  try {
-    if (!req.file) {
-      return res.status(400).json({ success: false, message: 'Please upload a PDF file to edit.' });
-    }
-
-    const base64Pdf = await editPdf(req.file.buffer, req.body);
-
-    res.status(200).json({
-      success: true,
-      message: 'PDF edited successfully!',
-      pdf: base64Pdf
-    });
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Error editing PDF', error: error.message });
-  }
-};
 
 export const pdfToWordController = async (req, res) => {
   try {

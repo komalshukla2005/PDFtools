@@ -12,7 +12,6 @@ import {
   pdfToImagesController,
   lockPdfController,
   unlockPdfController,
-  editPdfController,
   pdfToWordController,
   wordToPdfController,
   pdfToPptController
@@ -35,7 +34,6 @@ router.post('/pdf-to-images', upload.single('file'), pdfToImagesController);
 router.post('/lock', optionalVerifyToken, upload.single('file'), lockPdfController);
 router.post('/unlock', optionalVerifyToken, upload.single('file'), unlockPdfController);
 
-router.post('/edit-pdf', upload.single('file'), editPdfController);
 router.post('/pdf-to-word', upload.single('file'), pdfToWordController);
 router.post('/word-to-pdf', upload.single('file'), wordToPdfController);
 router.post('/pdf-to-ppt', upload.single('file'), pdfToPptController);

@@ -5,28 +5,6 @@ const getAuthHeaders = () => {
   return token ? { 'Authorization': `Bearer ${token}` } : {};
 };
 
-export const editPdfApi = async (file, options = {}) => {
-  const formData = new FormData();
-  formData.append('file', file);
-  if (options.headerText) formData.append('headerText', options.headerText);
-  if (options.footerText) formData.append('footerText', options.footerText);
-  if (options.overlayText) formData.append('overlayText', options.overlayText);
-  if (options.rotation) formData.append('rotation', options.rotation);
-  if (options.fontSize) formData.append('fontSize', options.fontSize);
-  if (options.textColor) formData.append('textColor', options.textColor);
-
-  const response = await fetch(`${API_BASE_URL}/tools/edit-pdf`, {
-    method: 'POST',
-    body: formData
-  });
-
-  const data = await response.json();
-  if (!response.ok || !data.success) {
-    throw new Error(data.message || 'Failed to edit PDF document');
-  }
-
-  return { downloadUrl: data.pdf, message: data.message };
-};
 
 export const pdfToWordApi = async (file) => {
   const formData = new FormData();

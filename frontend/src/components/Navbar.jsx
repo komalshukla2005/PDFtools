@@ -87,7 +87,6 @@ export default function Navbar({
                 /* User is Logged In */
                 <div className="flex items-center space-x-3">
                   <div className="flex items-center space-x-2 px-3 py-1.5 bg-rose-50 border border-rose-200 rounded-xl text-slate-900 text-sm font-extrabold shadow-sm">
-                    <UserCheck className="w-4 h-4 text-emerald-600" />
                     <span className="truncate max-w-[140px] text-rose-950">{user.name}</span>
                   </div>
 
@@ -96,7 +95,6 @@ export default function Navbar({
                     className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl text-sm font-extrabold border border-rose-300 bg-white text-rose-700 hover:bg-rose-50 hover:border-rose-400 transition-all shadow-sm cursor-pointer"
                     title="Sign Out"
                   >
-                    <LogOut className="w-4 h-4 text-rose-600" />
                     <span>Logout</span>
                   </button>
                 </div>
@@ -183,7 +181,7 @@ export default function Navbar({
             {user ? (
               <>
                 <div className="px-4 py-2 bg-rose-50 rounded-xl text-sm font-extrabold text-slate-900 border border-rose-200">
-                  👤 Signed in as <span className="text-rose-600 font-extrabold">{user.name}</span>
+                  Signed in as <span className="text-rose-600 font-extrabold">{user.name}</span>
                 </div>
                 <button
                   onClick={() => {
@@ -192,7 +190,6 @@ export default function Navbar({
                   }}
                   className="w-full px-4 py-2.5 rounded-xl border border-rose-300 text-rose-700 hover:bg-rose-50 text-sm font-extrabold flex items-center justify-center space-x-2 cursor-pointer"
                 >
-                  <LogOut className="w-4 h-4" />
                   <span>Logout</span>
                 </button>
               </>

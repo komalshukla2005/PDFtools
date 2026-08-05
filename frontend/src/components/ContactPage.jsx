@@ -9,16 +9,43 @@ export default function ContactPage() {
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setName('');
-      setEmail('');
-      setMessage('');
-      navigate('/');
-    }, 2500);
+    setLoading(true);
+    setError('');
+    
+    try {
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+      const response = await fetch(`${API_BASE_URL}/contact/submit`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || 'Failed to send message');
+      }
+
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setName('');
+        setEmail('');
+        setMessage('');
+        navigate('/');
+      }, 2500);
+    } catch (err) {
+      setError(err.message || 'An error occurred while sending your message');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -144,12 +171,19 @@ export default function ContactPage() {
                     </div>
                   </div>
 
+                  {error && (
+                    <div className="bg-rose-50 border border-rose-200 text-rose-700 px-4 py-3 rounded-xl text-sm font-bold">
+                      {error}
+                    </div>
+                  )}
+
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-500 hover:from-red-700 hover:to-rose-700 text-white font-extrabold text-base shadow-lg shadow-rose-600/30 flex items-center justify-center space-x-2 transition-all cursor-pointer mt-2"
+                    disabled={loading}
+                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-500 hover:from-red-700 hover:to-rose-700 disabled:opacity-70 text-white font-extrabold text-base shadow-lg shadow-rose-600/30 flex items-center justify-center space-x-2 transition-all cursor-pointer mt-2"
                   >
-                    <Send className="w-4 h-4" />
-                    <span>Send Message</span>
+                    <Send className={`w-4 h-4 ${loading ? 'animate-pulse' : ''}`} />
+                    <span>{loading ? 'Sending...' : 'Send Message'}</span>
                   </button>
                 </form>
               </div>

@@ -29,21 +29,7 @@ export const TOOLS = [
     accentColor: 'from-pink-500 to-rose-600',
     iconBg: 'bg-pink-500/10 text-pink-400 border-pink-500/30'
   },
-  {
-    id: 'edit-pdf',
-    path: '/edit-pdf',
-    title: 'Edit PDF',
-    shortTitle: 'Edit PDF',
-    description: 'Annotate, add page headers, footers, center text overlays, and rotate PDF pages.',
-    icon: 'Edit3',
-    badge: 'New',
-    category: 'edit',
-    acceptedTypes: '.pdf,application/pdf',
-    multiple: false,
-    minFiles: 1,
-    accentColor: 'from-rose-500 to-red-600',
-    iconBg: 'bg-rose-500/10 text-rose-400 border-rose-500/30'
-  },
+
   {
     id: 'zip',
     path: '/make-zip',
