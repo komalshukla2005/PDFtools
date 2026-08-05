@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="pdfforgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444" />
+      <stop offset="50%" stop-color="#e11d48" />
+      <stop offset="100%" stop-color="#dc2626" />
+    </linearGradient>
+  </defs>
+  <!-- Red Rounded Tile Background -->
+  <rect x="0" y="0" width="100" height="100" rx="28" fill="url(#pdfforgeGrad)" />
+  
+  <!-- White Flame Vector -->
+  <path d="M47.5 72.5a12.5 12.5 0 0 0 12.5-12.5c0-6.9-2.5-10-5-15-5.36-10.715-1.12-20.27 10-30 2.5 12.5 10 24.5 20 32.5 10 8 15 17.5 15 27.5a35 35 0 1 1-70 0c0-5.765 2.165-11.47 5-15a12.5 12.5 0 0 0 12.5 12.5z" fill="#ffffff" />
+</svg>
