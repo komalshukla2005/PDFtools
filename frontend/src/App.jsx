@@ -264,19 +264,7 @@ export default function App() {
 
       <main className="flex-grow">
         
-        {errorMessage && (
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-            <div className="p-4 rounded-2xl bg-rose-50 border border-rose-300 text-rose-800 flex items-center justify-between text-base shadow-sm font-bold">
-              <span>⚠️ {errorMessage}</span>
-              <button
-                onClick={() => setErrorMessage(null)}
-                className="font-extrabold underline text-sm ml-4 hover:text-rose-950 cursor-pointer"
-              >
-                Dismiss
-              </button>
-            </div>
-          </div>
-        )}
+
 
         <Routes>
           <Route

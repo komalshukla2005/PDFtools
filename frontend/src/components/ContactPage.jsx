@@ -50,10 +50,10 @@ export default function ContactPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
 
         {/* Left Side: Contact Information Cards */}
-        <div className="space-y-4">
+        <div className="space-y-4 md:col-span-5">
           <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-md space-y-4 text-slate-900">
             <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-xs font-extrabold">
               <Sparkles className="w-3.5 h-3.5 text-amber-500" />
@@ -73,9 +73,9 @@ export default function ContactPage() {
             <div className="p-3 rounded-xl bg-rose-50 text-rose-600 shrink-0">
               <Mail className="w-5 h-5" />
             </div>
-            <div>
-              <div className="text-xs text-slate-500 font-bold">Direct Email</div>
-              <div className="text-sm font-extrabold text-slate-900">support@pdfforge.io</div>
+            <div className="min-w-0">
+              <div className="text-sm text-slate-500 font-bold">Direct Email</div>
+              <div className="text-base font-extrabold text-slate-900 truncate">komalshukla23@navgurukul.org</div>
             </div>
           </div>
 
@@ -84,8 +84,8 @@ export default function ContactPage() {
               <Clock className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-xs text-slate-500 font-bold">Response Time</div>
-              <div className="text-sm font-extrabold text-slate-900">Within 24 Hours</div>
+              <div className="text-sm text-slate-500 font-bold">Response Time</div>
+              <div className="text-base font-extrabold text-slate-900">Within 24 Hours</div>
             </div>
           </div>
 
@@ -94,14 +94,14 @@ export default function ContactPage() {
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-xs text-slate-500 font-bold">Privacy First</div>
-              <div className="text-sm font-extrabold text-slate-900">100% Client-Side</div>
+              <div className="text-sm text-slate-500 font-bold">Privacy First</div>
+              <div className="text-base font-extrabold text-slate-900">100% Client-Side</div>
             </div>
           </div>
         </div>
 
         {/* Right Side: Form Container */}
-        <div className="md:col-span-2">
+        <div className="md:col-span-7">
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xl text-slate-900 relative overflow-hidden">
 
             {submitted ? (
