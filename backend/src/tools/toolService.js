@@ -5,13 +5,14 @@ import bcrypt from 'bcryptjs';
 import { createRequire } from 'module';
 import { Document, Paragraph, TextRun, Packer } from 'docx';
 import mammoth from 'mammoth';
-import PptxGenJS from 'pptxgenjs';
+
 import { encryptPDF } from '@pdfsmaller/pdf-encrypt';
 import { decryptPDF } from '@pdfsmaller/pdf-decrypt';
 import LockedPdf from '../models/LockedPdf.js';
 
 const require = createRequire(import.meta.url);
 const { PDFParse } = require('pdf-parse');
+const PptxGenJS = require('pptxgenjs');
 
 
 export const pdfToWord = async (fileBuffer, originalName = 'document.pdf') => {
