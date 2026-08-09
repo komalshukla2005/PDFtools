@@ -1,3 +1,13 @@
+if (typeof globalThis.DOMMatrix === 'undefined') {
+  globalThis.DOMMatrix = class DOMMatrix {};
+}
+if (typeof globalThis.ImageData === 'undefined') {
+  globalThis.ImageData = class ImageData {};
+}
+if (typeof globalThis.Path2D === 'undefined') {
+  globalThis.Path2D = class Path2D {};
+}
+
 import { PDFDocument, StandardFonts, rgb, degrees } from 'pdf-lib';
 import JSZip from 'jszip';
 import crypto from 'crypto';
@@ -11,8 +21,26 @@ import { decryptPDF } from '@pdfsmaller/pdf-decrypt';
 import LockedPdf from '../models/LockedPdf.js';
 
 const require = createRequire(import.meta.url);
-const { PDFParse } = require('pdf-parse');
-const PptxGenJS = require('pptxgenjs');
+
+const getPDFParse = () => {
+  try {
+    const mod = require('pdf-parse');
+    return mod.PDFParse || mod.default || mod;
+  } catch (e) {
+    console.error('Failed to load pdf-parse:', e);
+    return null;
+  }
+};
+
+const getPptxGenJS = () => {
+  try {
+    const mod = require('pptxgenjs');
+    return mod.default || mod;
+  } catch (e) {
+    console.error('Failed to load pptxgenjs:', e);
+    return null;
+  }
+};
 
 
 export const pdfToWord = async (fileBuffer, originalName = 'document.pdf') => {
@@ -20,11 +48,14 @@ export const pdfToWord = async (fileBuffer, originalName = 'document.pdf') => {
   let pageCount = 1;
 
   try {
-    const parser = new PDFParse({ data: fileBuffer });
-    await parser.load();
-    const parsedData = await parser.getText();
-    textContent = parsedData.text || '';
-    pageCount = parsedData.total || 1;
+    const PDFParse = getPDFParse();
+    if (PDFParse) {
+      const parser = new PDFParse({ data: fileBuffer });
+      await parser.load();
+      const parsedData = await parser.getText();
+      textContent = parsedData.text || '';
+      pageCount = parsedData.total || 1;
+    }
   } catch (err) {
     console.error(err);
   }
@@ -111,10 +142,13 @@ export const wordToPdf = async (fileBuffer, originalName = 'document.docx') => {
 export const pdfToPpt = async (fileBuffer, originalName = 'presentation.pdf') => {
   let textContent = '';
   try {
-    const parser = new PDFParse({ data: fileBuffer });
-    await parser.load();
-    const parsedData = await parser.getText();
-    textContent = parsedData.text || '';
+    const PDFParse = getPDFParse();
+    if (PDFParse) {
+      const parser = new PDFParse({ data: fileBuffer });
+      await parser.load();
+      const parsedData = await parser.getText();
+      textContent = parsedData.text || '';
+    }
   } catch (err) {
     console.error(err);
   }
@@ -124,6 +158,11 @@ export const pdfToPpt = async (fileBuffer, originalName = 'presentation.pdf') =>
   }
 
   const pagesText = textContent.split(/-- \d+ of \d+ --|\f/).filter(t => t.trim().length > 0);
+
+  const PptxGenJS = getPptxGenJS();
+  if (!PptxGenJS) {
+    throw new Error('PowerPoint generator module is unavailable in this environment.');
+  }
 
   const pptx = new PptxGenJS();
   pptx.layout = 'LAYOUT_16x9';
