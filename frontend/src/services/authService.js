@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://pd-ftools-ecru.vercel.app/api';
 
 export const registerUser = async (name, email, password) => {
   const response = await fetch(`${API_BASE_URL}/auth/register`, {
